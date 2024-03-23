@@ -1,16 +1,31 @@
 @keyframes moving {
- 0% { transform: translateX(0) }
- 100% { transform: translateX(4px) }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(4px);
+  }
 }
 
 @keyframes scaling {
- 0% { transform: scale(1.0) }
- 100% { transform: scale(1.5) }
+  0% {
+    transform: scale(1.0);
+  }
+
+  100% {
+    transform: scale(1.5);
+  }
 }
 
 @keyframes opacity {
- 0% { opacity: 0 }
- 100% { opacity: 1 }
+  0% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1
+  }
 }
 
 .card__like-icon-core {

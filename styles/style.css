@@ -281,9 +281,9 @@
   font-size: 14px;
   font-family: var(--font-accent, PressStart2P), monospace;
   margin-inline: 34.5px;
-  padding:  19px;
   --padding-block: max(10px, 10px + (100vw - 375px) / (1440 - 375) * (12 - 10));
   padding: var(--padding-block) 19px;
+  margin-block-end: calc(100px + (100vw - 375px) / (1440 - 375) * (103 - 100));
 }
            
 .footer__button-image {
@@ -304,6 +304,7 @@
 }
 
 .dialog {
+  animation: opacity 0.5s;
   inline-size: max(341px, 341px + (100vw - 375px) / (1440 - 375) * (357 - 341));
   block-size: max(191px, 191px + (100vw - 375px) / (1440 - 375) * (193 - 191));
   background-color: var(--color-text-background, #fff);
@@ -315,16 +316,17 @@
   padding: 0 max(28px, 40px + (100vw - 375px) / (1440 - 375) * (28 - 40));
 }
 
-.dialog[open] {
-  animation: opacity 0.5s;
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog__form {
+  inline-size: 100%;
+  block-size: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 59px 1fr;
   align-items: center;
-}
-
-.dialog::backdrop {
-  background-color: rgb(0 0 0 / 0.75);
 }
 
 .dialog__image {
