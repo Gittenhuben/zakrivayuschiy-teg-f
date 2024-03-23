@@ -33,25 +33,6 @@
   --letter-spacing: clamp(-0.1px, -0.05px + (100vw - 375px) / (1440 - 375) * (-0.1 - -0.05), -0.05px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --font-weight-text: 400;
-    --font-weight-header: 700;
-
-    --color-text-background: #fff;
-    --color-text: #000;
-    --color-button-text: #fff;
-    --color-background: #d3d3d3;
-    --color-background-gradient-start: #e7e7e7;
-    --color-background-gradient-end: #1a1a1a;
-    --color-heart-contour: #000;
-
-    --background-gradient-start-position: 0.01%;
-
-    --letter-spacing: 0;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --font-weight-text: 465;
