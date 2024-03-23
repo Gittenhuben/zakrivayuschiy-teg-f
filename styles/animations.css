@@ -1,14 +1,68 @@
-/* Опишите в этом файле все keyframes для проекта и стили анимаций иконки Like.
+@keyframes moving {
+ 0% { transform: translateX(0) }
+ 100% { transform: translateX(4px) }
+}
 
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
+@keyframes scaling {
+ 0% { transform: scale(1.0) }
+ 100% { transform: scale(1.5) }
+}
 
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-*/
+@keyframes opacity {
+ 0% { opacity: 0 }
+ 100% { opacity: 1 }
+}
+
+.card__like-icon-core {
+  transition: fill 0.3s 0.03s ease;
+  fill: transparent;
+}
+
+.card__icon-button:hover .card__like-icon-core {
+  fill: var(--color-heart-contour);
+  transition: fill 0.3s ease;
+}
+
+.card__icon-button:active .card__like-icon-core,
+.like-icon.is-liked .card__like-icon-core {
+  fill: var(--color-heart-sparks);
+  transition: fill 0.3s ease;
+}
+
+.card__like-icon-main-body {
+  transition: fill 0.3s ease;
+  fill: transparent;
+}
+
+.card__icon-button:hover .card__like-icon-main-body {
+  fill: var(--color-heart-contour);
+  transition: fill 0.3s 0.05s ease;
+}
+
+.card__icon-button:active .card__like-icon-main-body,
+.like-icon.is-liked .card__like-icon-main-body {
+  fill: var(--color-heart-sparks);
+  transition: fill 0.3s 0.05s ease;
+}
+
+.like-icon:not(.is-liked) .card__like-icon-contour {
+  fill: var(--color-heart-contour);
+  transition: fill 0.1 linear;
+}
+
+.like-icon.is-liked .card__like-icon-contour {
+  fill: var(--color-heart-sparks);
+  transition: fill 0.3s 0.06s ease;
+}
+
+.like-icon.is-liked {
+  animation: scaling 0.3s ease-in 0.1s 2 both alternate;
+}
+
+.card__like-icon-sparks {
+  opacity: 0;
+}
+
+.like-icon.is-liked .card__like-icon-sparks {
+  animation: opacity 0.3s ease-in 0.3s 2 both alternate;
+}

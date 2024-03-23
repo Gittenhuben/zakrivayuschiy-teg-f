@@ -1,20 +1,361 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  font-family: var(--font-main, Inter), sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-variation-settings: 'wght' var(--font-weight-text, 400);
+  color: var(--color-text, #000);
+  background-image:
+    repeating-linear-gradient(to bottom, var(--color-background, #d3d3d3) 0px 2px, transparent 2px 4px),
+    repeating-linear-gradient(to right, var(--color-background, #d3d3d3) 0px 2px, transparent 2px 4px),
+    linear-gradient(to bottom, var(--color-background-gradient-start, #e7e7e7)
+                               var(--background-gradient-start-position, 0.01%),
+                               var(--color-background-gradient-end, #1a1a1a));
+  background-size: cover;
+}
+
+.header {
+  margin: 100px auto;
+  inline-size: calc(100vw - max(0px, (100vw - 375px) / (1440 - 375) * (1440 - 700)));
+  block-size: calc(327px + (100vw - 375px) / (1440 - 375) * (368 - 327));
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  background-color: var(--color-text-background, #fff);
+  align-items: center;
+  border: 2px solid var(--color-text, #000);
+  font-family: var(--font-accent, PressStart2P), monospace;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.header_title-group {
+  grid-row-start: 2;
+  margin-block-start: max(0px, (100vw - 375px) / (1440 - 375) * (16 - 0));
+}
+
+.header__title {
+  font-size: calc(49px + (100vw - 375px) / (1440 - 375) * (65 - 49));
+  margin-block-end: 20px;
+}
+
+.header__subtitle {
+  font-size: calc(14px + (100vw - 375px) / (1440 - 375) * (23 - 14));
+}
+
+.header__theme-menu {
+  grid-row-start: 3;
+  inline-size: 70px;
+  justify-self: center;
+  margin-block-start: -2px;
+  align-self: center;
+  margin-inline-start: calc(-4px + (100% - 375px) / (1440 - 375) * (-14 - -4));
+}
+
+.theme-menu__item:not(:last-child) {
+  margin-block-end: 8px;
+}
+
+.theme-menu__item:nth-child(2) {
+  margin-inline-start: calc(-4px + (100% - 375px) / (1440 - 375) * (-9 - -4));
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.theme-menu__button {
+  position: relative;
+  text-transform: uppercase;
+  border: none;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.theme-menu__button:disabled {
+  pointer-events: none;
+}
+
+.theme-menu__button:hover, 
+.theme-menu__button:disabled,
+.theme-menu__button:focus-visible {
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled::before {
+  position: absolute;
+  inset-inline-start: -14px;
+  content: '\25B6';
+  animation: moving 0.5s ease-in-out infinite both alternate;
+}
+
+.theme-menu__button::after {
+  content: '';
+  display: block;
+  inline-size: 0%;
+  block-size: 1px;
+  background-color: var(--color-text, #000);
+  transition: inline-size 0.3s ease;
+}
+
+.theme-menu__button:focus-visible::after {
+  inline-size: 100%;
+}
+
+.card {
+  margin: 0 auto 50.5px;
+  inline-size: calc(100vw - max(0px, (100vw - 375px) / (1440 - 375) * (1440 - 700)));
+  font-size: 18px;
+  border: 2px solid var(--color-text, #000);
+  background-color: var(--color-text-background, #fff);
+}
+
+.card__title {
+  font-size: 18px;
+  margin: 4.5px 10px 4.5px 10px;
+  font-weight: bold;
+  font-variation-settings: 'wght' var(--font-weight-header, 700);
+  line-height: 22px;
+}
+
+.card__image-container {
+  display: flex;
+  position: relative;
+  border-block: 2px solid var(--color-text, #000);
+  overflow: hidden;
+}
+
+.card__image-label {
+  position: absolute;
+  z-index: 1;
+  inset-inline-end: max(11px, 11px + (100vw - 375px) / (1440 - 375) * (25 - 11));
+  inset-block-start: calc(21.5px + (100vw - 375px) / (1440 - 375) * (23.5 - 21.5));
+  font-family: var(--font-accent, PressStart2P), monospace;
+  font-size: 14px;
+  color: var(--color-text, #000);
+  mix-blend-mode: hard-light;
+  opacity: 50%;
+  text-shadow:
+    -1px 0 var(--color-text-background, #fff),
+    0 1px var(--color-text-background, #fff),
+    1px 0 var(--color-text-background, #fff),
+    0 -1px var(--color-text-background, #fff);
+}
+
+@supports((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
+  .card__image-label {
+    -webkit-text-stroke: 1px var(--color-text-background, #fff);
+    text-stroke: 1px var(--color-text-background, #fff);
+    text-shadow: none;
+  }
+}
+
+.label-uppercase {
+  text-transform: uppercase;
+}
+
+.card__image {
+  border: none;
+  inline-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.image2 {
+  filter: saturate(0.24);
+}
+
+.image3 {
+  filter: saturate(3);
+}
+
+.image4 {
+  filter: saturate(0.75);
+}
+
+.image5 {
+  filter: invert(0.75);
+}
+
+.image6 {
+  filter: sepia(0.9);
+}
+
+.image7 {
+  filter: blur(20px);
+}
+
+.image8 {
+  filter: hue-rotate(90deg) contrast(0.25) saturate(2.5);
+}
+
+.card__text {
+  font-weight: normal;
+  font-variation-settings: 'wght' var(--font-weight-text, 400);
+  margin: 24.5px 25px 0;
+  letter-spacing: var(--letter-spacing, 0);
+}
+
+.card__text:not(:first-of-type) {
+  margin-block-start: 27px;
+} 
+
+.card__button-group {
+  display: flex;
+  justify-content: end;
+  margin: 25px 25px 19px;
+}
+
+.card__icon-button {
+  border: none;
+  outline-offset: -2px;
+  outline: 2px solid transparent;
+  transition: outline 0.3s ease;
+  padding: 0;
+  margin-inline-end: 6px;
+  inline-size: 40px;
+  block-size: 38px;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--color-text, #000);
+}
+
+.card__like-icon {
+  padding-block-start: 2px;
+  inline-size: 39px;
+  block-size: 36px;
+}
+
+.card__like-button {
+  position: relative;
+  border: 2px solid var(--color-text, #000);
+  min-block-size: 38px;
+  min-inline-size: 130px;
+  font-family: var(--font-accent, PressStart2P), monospace;
+  font-size: 14px;
+  margin-block-end: 6px;
+  transition: box-shadow 0.3s ease;
+}
+
+.button-with-text {
+  position: relative;
+}
+
+.button-with-text:focus-visible {
+  box-shadow: 2px 2px 0 var(--color-text, #000);
+}
+
+.button-with-text::before {
+  position: absolute;
+  content: '';
+  inline-size: 0%;
+  inset: 0;
+  background-color: var(--color-text, #000);
+  transition: inline-size 0.5s ease-in-out;
+}
+
+.button-with-text:hover::before {
+  inline-size: 100%;
+}
+
+.button__text {
+  color: var(--color-button-text, #fff);
+  mix-blend-mode: difference;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.footer__button {
+  border: 2px solid var(--color-text, #000);
+  background-color: var(--color-text-background, #fff);
+  font-size: 14px;
+  font-family: var(--font-accent, PressStart2P), monospace;
+  margin-inline: 34.5px;
+  padding:  19px;
+  --padding-block: max(10px, 10px + (100vw - 375px) / (1440 - 375) * (12 - 10));
+  padding: var(--padding-block) 19px;
+}
+           
+.footer__button-image {
+  --image-size: max(21px, calc(28px + (100vw - 375px) / (1440 - 375) * (21 - 28)));
+  inline-size: var(--image-size);
+  block-size: var(--image-size);
+  color: var(--color-button-text, #fff);
+  mix-blend-mode: difference;
+  margin: 2.5px 0;
+  margin-inline-end: clamp(-6px, (100vw - 375px) / (1440 - 375) * (-6 - 0), 0px);
+  vertical-align: sub;
+}
+
+.footer__button-text {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 6px 0;
+}
+
+.dialog {
+  inline-size: max(341px, 341px + (100vw - 375px) / (1440 - 375) * (357 - 341));
+  block-size: max(191px, 191px + (100vw - 375px) / (1440 - 375) * (193 - 191));
+  background-color: var(--color-text-background, #fff);
+  color: var(--color-text, #000);
+  border: 2px solid var(--color-text, #000);
+  font-family: var(--font-accent, PressStart2P), monospace;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 0 max(28px, 40px + (100vw - 375px) / (1440 - 375) * (28 - 40));
+}
+
+.dialog[open] {
+  animation: opacity 0.5s;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 59px 1fr;
+  align-items: center;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+.dialog__image {
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 1;
+  inline-size: 39px;
+  block-size: 39px;
+  margin-block-start: 42px;
+  align-self: start;
+}
+
+.dialog__text {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+  grid-row-end: span 1;
+  align-self: start;
+  margin-block-start: 30px;
+  line-height: 155%;
+  margin-inline-start: max(0px, (100vw - 375px) / (1440 - 375) * (2 - 0));
+}
+
+.dialog__button {
+  border: 2px solid var(--color-text, #000);
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+  min-block-size: 38px;
+  padding: 0;
+  text-transform: uppercase;
 }

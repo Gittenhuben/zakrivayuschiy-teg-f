@@ -1,6 +1,72 @@
-/* В этом файле вы опишете значения переменных в разных цветовых схемах.
-Придерживайтесь такого именования классов:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
-*/
+:root.theme-light {
+  --font-weight-text: 400;
+  --font-weight-header: 700;
+
+  --color-text-background: #fff;
+  --color-text: #000;
+  --color-button-text: #fff;
+  --color-background: #d3d3d3;
+  --color-background-gradient-start: #e7e7e7;
+  --color-background-gradient-end: #1a1a1a;
+
+  --color-heart-contour: #000;
+
+  --background-gradient-start-position: 0.01%;
+
+  --letter-spacing: 0;
+}
+
+:root.theme-dark {
+  --font-weight-text: 465;
+  --font-weight-header: 785;
+
+  --color-text-background: #000;
+  --color-text: #00cc14;
+  --color-button-text: #00cc14;
+  --color-background: #000;
+  --color-background-gradient-start: #007f0c;
+  --color-background-gradient-end: #004306;
+  --color-heart-contour: #00cc14;
+
+  --background-gradient-start-position: 0%;
+
+  --letter-spacing: clamp(-0.1px, -0.05px + (100vw - 375px) / (1440 - 375) * (-0.1 - -0.05), -0.05px);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --font-weight-text: 400;
+    --font-weight-header: 700;
+
+    --color-text-background: #fff;
+    --color-text: #000;
+    --color-button-text: #fff;
+    --color-background: #d3d3d3;
+    --color-background-gradient-start: #e7e7e7;
+    --color-background-gradient-end: #1a1a1a;
+    --color-heart-contour: #000;
+
+    --background-gradient-start-position: 0.01%;
+
+    --letter-spacing: 0;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-weight-text: 465;
+    --font-weight-header: 785;
+
+    --color-text-background: #000;
+    --color-text: #00cc14;
+    --color-button-text: #00cc14;
+    --color-background: #000;
+    --color-background-gradient-start: #007f0c;
+    --color-background-gradient-end: #004306;
+    --color-heart-contour: #00cc14;
+
+    --background-gradient-start-position: 0%;
+
+    --letter-spacing: clamp(-0.1px, -0.05px + (100vw - 375px) / (1440 - 375) * (-0.1 - -0.05), -0.05px);
+  }
+}
